@@ -1,11 +1,9 @@
 package handler
 
 import (
-	"encoding/xml"
 	"net/http"
 
 	"github.com/tjtjtj/lisgo/server"
-	"github.com/tjtjtj/lisgo/xmlconverter"
 
 	"fmt"
 
@@ -20,21 +18,18 @@ func Get(w http.ResponseWriter, r *http.Request) {
 
 	// listbuckets
 	if r.URL.Path == "/" {
-		owner := server.Owner{
-			ID:          "testid",
-			DisplayName: "testname",
+		respbody, err := listobjects(&srv)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
 		}
-		buckets, _ := srv.ListBuckets()
-		result := xmlconverter.BucketsResult(owner, buckets)
-		byteXML, _ := result.MarshalXml()
-
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(xml.Header))
-		w.Write(byteXML)
+		w.Write([]byte(respbody))
 		return
 	}
 
 	// listobjects
+
 	// getobjectacl
 	// getobject
 

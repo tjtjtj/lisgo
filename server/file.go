@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"io/ioutil"
 )
 
@@ -14,7 +13,6 @@ func (s *Server) ListBuckets() ([]Bucket, error) {
 	}
 	for _, f := range files {
 		if f.IsDir() {
-			fmt.Println(f.Name())
 			b := Bucket{
 				Name:         f.Name(),
 				CreationDate: f.ModTime(),
