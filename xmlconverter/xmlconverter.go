@@ -1,4 +1,4 @@
-package xml
+package xmlconverter
 
 import (
 	"encoding/xml"
@@ -28,6 +28,10 @@ type ListAllMyBucketsResult struct {
 	Buckets struct {
 		Bucket []server.Bucket
 	}
+}
+
+func (r *ListAllMyBucketsResult) MarshalXml() ([]byte, error) {
+	return xml.MarshalIndent(r, "", `   `)
 }
 
 func BucketsResult(owner server.Owner, buckets []server.Bucket) *ListAllMyBucketsResult {

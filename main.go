@@ -1,4 +1,4 @@
-package lisgo
+package main
 
 import (
 	"github.com/tjtjtj/lisgo/handler"

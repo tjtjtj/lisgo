@@ -1,4 +1,4 @@
-package xml
+package xmlconverter
 
 import (
 	"encoding/xml"
