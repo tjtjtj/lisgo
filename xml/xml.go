@@ -10,7 +10,7 @@ import (
 <ListAllMyBucketsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
   <Owner>
     <ID>8050</ID>
-	<DisplayName>buckettest00002</DisplayName>
+	  <DisplayName>buckettest00002</DisplayName>
   </Owner>
   <Buckets>
     <Bucket><Name>readonly</Name><CreationDate>2016-04-27T23:41:33+0900</CreationDate></Bucket>
