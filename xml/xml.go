@@ -2,8 +2,11 @@ package xml
 
 import (
 	"encoding/xml"
-	"time"
+
+	"github.com/tjtjtj/lisgo/server"
 )
+
+//"tjtjtj/lisgo/server"
 
 /*
 <?xml version="1.0" encoding="UTF-8"?>
@@ -21,12 +24,21 @@ import (
 type ListAllMyBucketsResult struct {
 	XMLName xml.Name `xml:"ListAllMyBucketsResult"`
 	Xmlns   string   `xml:"xmlns,attr"`
-	Owner   Owner
+	Owner   server.Owner
 	Buckets struct {
-		Bucket []Bucket
+		Bucket []server.Bucket
 	}
 }
 
+func BucketsResult(owner server.Owner, buckets []server.Bucket) *ListAllMyBucketsResult {
+	ret := ListAllMyBucketsResult{}
+	ret.Xmlns = "http://s3.amazonaws.com/doc/2006-03-01/"
+	ret.Owner = owner
+	ret.Buckets.Bucket = buckets
+	return &ret
+}
+
+/*
 type Owner struct {
 	ID          string
 	DisplayName string
@@ -36,7 +48,7 @@ type Bucket struct {
 	Name         string
 	CreationDate time.Time
 }
-
+*/
 /*
 <?xml version="1.0" encoding="UTF-8"?>
 <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -66,9 +78,17 @@ type ListBucketResult struct {
 	Marker      string
 	MaxKeys     int
 	IsTruncated bool
-	Contents    Content
+	Contents    server.Content
 }
 
+func ObjectsResult(content server.Content) *ListBucketResult {
+	ret := ListBucketResult{}
+	ret.Xmlns = "http://s3.amazonaws.com/doc/2006-03-01/"
+	ret.Contents = content
+	return &ret
+}
+
+/*
 type Content struct {
 	Key          string
 	LastModified time.Time
@@ -77,3 +97,4 @@ type Content struct {
 	StorageClass string
 	Owner        Owner
 }
+*/
