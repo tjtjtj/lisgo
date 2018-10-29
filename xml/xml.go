@@ -25,7 +25,6 @@ type ListAllMyBucketsResult struct {
 	Buckets struct {
 		Bucket []Bucket
 	}
-	Bs []Bucket
 }
 
 type Owner struct {
